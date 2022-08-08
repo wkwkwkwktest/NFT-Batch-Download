@@ -8,9 +8,12 @@ WORKDIR /tmp
 RUN pip install poetry
 
 # 
+RUN echo 'COPY ./backend/pyproject.toml ./backend/poetry.lock* /tmp/'
 COPY ./backend/pyproject.toml ./backend/poetry.lock* /tmp/
 
+
 # 
+RUN echo 'RUN poetry export -f requirements.txt --output requirements.txt --without-hashes'
 RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
 
 # 
