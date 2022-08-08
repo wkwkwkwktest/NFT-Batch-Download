@@ -3,15 +3,19 @@ FROM python:3.9 as requirements-stage
 
 # 
 WORKDIR /tmp
+RUN echo 'WORKDIR /tmp'
 
 # 
 RUN pip install poetry
+RUN echo 'RUN pip install poetry'
 
 # 
 COPY ./backend/pyproject.toml ./backend/poetry.lock* /tmp/
+RUN echo 'COPY ./backend/pyproject.toml ./backend/poetry.lock* /tmp/'
 
 # 
 RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
+RUN echo 'RUN poetry export -f requirements.txt --output requirements.txt --without-hashes'
 
 # 
 FROM python:3.9
